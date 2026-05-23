@@ -1,7 +1,7 @@
 {
   "name": "adorable-log",
   "version": "1.0.0",
-  "description": "사랑스러운 디버깅 라이브러리",
+  "description": "Adorable Debug Library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -17,8 +17,9 @@
     "dev": "tsup --watch",
     "preview": "npx serve ."
   },
-  "keywords": [],
-  "author": "",
+  "files": ["dist", "README.md"],
+  "keywords": ["log", "console", "debug", "browser", "namespace", "logger"],
+  "author": "Hina0222",
   "license": "MIT",
   "packageManager": "pnpm@10.28.2",
   "devDependencies": {
