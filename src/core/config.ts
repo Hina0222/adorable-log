@@ -1,18 +1,18 @@
-export interface PlogConfig {
+export interface AlogConfig {
   enabled: boolean;
   collapsed: boolean;
   namespaces: Record<string, { color?: string; enabled?: boolean }>;
 }
 
-const DEFAULT_CONFIG: PlogConfig = {
+const DEFAULT_CONFIG: AlogConfig = {
   enabled: true,
   collapsed: true,
   namespaces: {},
 };
 
-let _config: PlogConfig = { ...DEFAULT_CONFIG, namespaces: {} };
+let _config: AlogConfig = { ...DEFAULT_CONFIG, namespaces: {} };
 
-export function configure(options: Partial<PlogConfig>): void {
+export function configure(options: Partial<AlogConfig>): void {
   _config = {
     ..._config,
     ...options,
@@ -23,7 +23,7 @@ export function configure(options: Partial<PlogConfig>): void {
   };
 }
 
-export function getConfig(): PlogConfig {
+export function getConfig(): AlogConfig {
   return _config;
 }
 

@@ -6,7 +6,7 @@ import { callGroup } from '../methods/group';
 import { callTable } from '../methods/table';
 import { callBanner } from '../methods/banner';
 
-export class PlogInstance {
+export class AlogInstance {
   private namespace: string;
   private bgColor: string;
   private textColor: string;
