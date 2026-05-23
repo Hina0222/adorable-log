@@ -1,0 +1,49 @@
+# 디폴트 무시된 파일
+/shelf/
+/.idea/workspace.xml
+# 에디터 기반 HTTP 클라이언트 요청
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# 의존성
+node_modules/
+
+# 빌드 결과물
+dist/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# 테스트 커버리지
+coverage/
+
+# 환경 변수
+.env
+.env.local
+.env.*.local
+
+# 로그
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+
+# CLAUDE
+.claude
+CLAUDE.md
+
+# test
+/test
+
+# plan, impl
+pretty-log-plan.md
+pretty-log-impl.md
+README.md
