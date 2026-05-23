@@ -19,6 +19,10 @@
   },
   "files": ["dist", "README.md"],
   "keywords": ["log", "console", "debug", "browser", "namespace", "logger"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hina0222/adorable-log"
+  },
   "author": "Hina0222",
   "license": "MIT",
   "packageManager": "pnpm@10.28.2",
