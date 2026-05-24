@@ -15,6 +15,7 @@ export function hashColor(namespace: string): string {
   for (let i = 0; i < namespace.length; i++) {
     hash = (hash * 31 + namespace.charCodeAt(i)) >>> 0;
   }
-  const hue = hash % 360;
+  // Exclude red range (hue 340–360 and 0–20) by mapping to 20–340
+  const hue = (hash % 320) + 20;
   return hslToHex(hue, 65, 45);
 }
