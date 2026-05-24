@@ -1,6 +1,6 @@
 {
   "name": "adorable-log",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adorable Debug Library",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -17,8 +17,18 @@
     "dev": "tsup --watch",
     "preview": "npx serve ."
   },
-  "files": ["dist", "README.md"],
-  "keywords": ["log", "console", "debug", "browser", "namespace", "logger"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "log",
+    "console",
+    "debug",
+    "browser",
+    "namespace",
+    "logger"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/hina0222/adorable-log"
