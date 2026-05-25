@@ -1,11 +1,9 @@
 import { getConfig } from '../core/config';
-import { buildBadge } from '../utils/format';
 import { supportsStyles } from '../utils/detect';
 
 export function callTable(
   namespace: string,
-  bgColor: string,
-  textColor: string,
+  badge: { format: string; styles: string[] },
   label: string,
   data: unknown[],
   columns?: string[],
@@ -19,8 +17,7 @@ export function callTable(
   const groupFn = config.collapsed ? console.groupCollapsed : console.group;
 
   if (supportsStyles()) {
-    const { format, styles } = buildBadge(namespace, bgColor, textColor);
-    groupFn(`${format} ${label}`, ...styles);
+    groupFn(`${badge.format} ${label}`, ...badge.styles);
   } else {
     groupFn(`[${namespace}] ${label}`);
   }

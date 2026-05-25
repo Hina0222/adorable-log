@@ -1,6 +1,5 @@
 import { getConfig } from '../core/config';
 import { METHOD_STYLES } from '../core/styles';
-import { buildBadge } from '../utils/format';
 import { supportsStyles } from '../utils/detect';
 
 type MethodName = keyof typeof METHOD_STYLES;
@@ -8,8 +7,7 @@ type MethodName = keyof typeof METHOD_STYLES;
 export function callMethod(
   method: MethodName,
   namespace: string,
-  bgColor: string,
-  textColor: string,
+  badge: { format: string; styles: string[] },
   message: unknown,
   args: unknown[],
 ): void {
@@ -31,8 +29,7 @@ export function callMethod(
   const prefix = icon ? ` ${icon}` : '';
 
   if (supportsStyles()) {
-    const { format, styles } = buildBadge(namespace, bgColor, textColor);
-    consoleFn(`${format}${prefix}`, ...styles, message, ...args);
+    consoleFn(`${badge.format}${prefix}`, ...badge.styles, message, ...args);
   } else {
     consoleFn(`[${namespace}]${prefix}`, message, ...args);
   }

@@ -1,11 +1,10 @@
 import { getConfig } from '../core/config';
-import { buildBadge } from '../utils/format';
 import { supportsStyles } from '../utils/detect';
 
 export function callBanner(
   namespace: string,
+  badge: { format: string; styles: string[] },
   bgColor: string,
-  textColor: string,
   title: string,
 ): void {
   const config = getConfig();
@@ -15,7 +14,6 @@ export function callBanner(
   if (nsConfig?.enabled === false) return;
 
   if (supportsStyles()) {
-    const { format, styles } = buildBadge(namespace, bgColor, textColor);
     const titleStyle = [
       `border: 1px solid ${bgColor}`,
       `color: ${bgColor}`,
@@ -23,7 +21,7 @@ export function callBanner(
       'border-radius: 4px',
       'font-weight: bold',
     ].join('; ');
-    console.log(`${format} %c${title}`, ...styles, titleStyle);
+    console.log(`${badge.format} %c${title}`, ...badge.styles, titleStyle);
   } else {
     console.log(`[${namespace}] *** ${title} ***`);
   }
