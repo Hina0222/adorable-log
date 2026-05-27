@@ -15,6 +15,15 @@
 - **Global config** - toggle logging per namespace or disable everything in production
 
 ---
+## Preview
+<table>
+  <tr>
+    <td><img width="622" height="282" alt="README1" src="https://github.com/user-attachments/assets/a90d4cb4-9952-400b-a509-24cae82032cd" /></td>
+    <td><img width="833" height="643" alt="README2" src="https://github.com/user-attachments/assets/9716d091-0edb-430f-b165-4b27808d8879" /></td>
+  </tr>
+</table>
+
+---
 
 ## Installation
 
