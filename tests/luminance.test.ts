@@ -13,4 +13,10 @@ describe('getTextColor', () => {
     expect(getTextColor('#F39C12')).toBe('#000000');
     expect(getTextColor('#2ECC71')).toBe('#000000');
   });
+
+  it('3자리 hex도 6자리와 동일하게 처리됨', () => {
+    expect(getTextColor('#fff')).toBe('#000000');
+    expect(getTextColor('#000')).toBe('#ffffff');
+    expect(getTextColor('#e33')).toBe(getTextColor('#ee3333'));
+  });
 });
