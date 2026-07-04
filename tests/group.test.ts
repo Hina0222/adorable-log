@@ -37,6 +37,36 @@ describe('callGroup', () => {
     expect(spy).not.toHaveBeenCalled();
   });
 
+  it('enabled: false여도 콜백은 실행됨 (그룹 래핑 없이)', () => {
+    configure({ enabled: false });
+    const callback = vi.fn();
+    const groupSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
+    const collapsedSpy = vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
+    const endSpy = vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+
+    callGroup('Auth', badge, '테스트', callback);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(groupSpy).not.toHaveBeenCalled();
+    expect(collapsedSpy).not.toHaveBeenCalled();
+    expect(endSpy).not.toHaveBeenCalled();
+  });
+
+  it('namespace enabled: false여도 콜백은 실행됨 (그룹 래핑 없이)', () => {
+    configure({ namespaces: { Auth: { enabled: false } } });
+    const callback = vi.fn();
+    const groupSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
+    const collapsedSpy = vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
+    const endSpy = vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+
+    callGroup('Auth', badge, '테스트', callback);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(groupSpy).not.toHaveBeenCalled();
+    expect(collapsedSpy).not.toHaveBeenCalled();
+    expect(endSpy).not.toHaveBeenCalled();
+  });
+
   it('collapsed 옵션이면 groupCollapsed 사용', () => {
     const spy = vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
     vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
