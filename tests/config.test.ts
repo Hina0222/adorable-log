@@ -20,6 +20,16 @@ describe('configure', () => {
     expect(config.namespaces.Cart?.color).toBe('#00ff00');
   });
 
+  it('enabled: undefined는 무시되고 기존 값이 유지됨', () => {
+    configure({ enabled: undefined });
+    expect(getConfig().enabled).toBe(true);
+  });
+
+  it('collapsed: undefined는 무시되고 기존 값이 유지됨', () => {
+    configure({ collapsed: undefined });
+    expect(getConfig().collapsed).toBe(true);
+  });
+
   it('같은 네임스페이스 재설정 시 기존 필드가 유지됨', () => {
     configure({ namespaces: { Auth: { color: '#ff0000' } } });
     configure({ namespaces: { Auth: { enabled: false } } });

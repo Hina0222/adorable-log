@@ -18,8 +18,8 @@ export function configure(options: Partial<AlogConfig>): void {
     namespaces[name] = { ...namespaces[name], ...nsOptions };
   }
   _config = {
-    ..._config,
-    ...options,
+    enabled: options.enabled ?? _config.enabled,
+    collapsed: options.collapsed ?? _config.collapsed,
     namespaces,
   };
 }
