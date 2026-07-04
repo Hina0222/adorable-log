@@ -13,6 +13,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "typecheck": "tsc --noEmit",
     "test": "vitest",
     "dev": "tsup --watch",
     "preview": "npx serve ."

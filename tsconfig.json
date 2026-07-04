@@ -4,9 +4,10 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "strict": true,
-    "declaration": true,
-    "outDir": "dist",
+    "skipLibCheck": true,
+    "noEmit": true,
+    // tsup의 dts 빌드가 내부적으로 baseUrl을 주입하므로 필요 (TS 6에서 baseUrl은 deprecation 에러 TS5101)
     "ignoreDeprecations": "6.0"
   },
-  "include": ["src"]
+  "include": ["src", "tests", "tsup.config.ts"]
 }
