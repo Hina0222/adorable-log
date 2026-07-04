@@ -13,13 +13,14 @@ const DEFAULT_CONFIG: AlogConfig = {
 let _config: AlogConfig = { ...DEFAULT_CONFIG, namespaces: {} };
 
 export function configure(options: Partial<AlogConfig>): void {
+  const namespaces = { ..._config.namespaces };
+  for (const [name, nsOptions] of Object.entries(options.namespaces ?? {})) {
+    namespaces[name] = { ...namespaces[name], ...nsOptions };
+  }
   _config = {
     ..._config,
     ...options,
-    namespaces: {
-      ..._config.namespaces,
-      ...options.namespaces,
-    },
+    namespaces,
   };
 }
 

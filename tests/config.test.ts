@@ -19,6 +19,14 @@ describe('configure', () => {
     expect(config.namespaces.Auth?.color).toBe('#ff0000');
     expect(config.namespaces.Cart?.color).toBe('#00ff00');
   });
+
+  it('같은 네임스페이스 재설정 시 기존 필드가 유지됨', () => {
+    configure({ namespaces: { Auth: { color: '#ff0000' } } });
+    configure({ namespaces: { Auth: { enabled: false } } });
+    const config = getConfig();
+    expect(config.namespaces.Auth?.color).toBe('#ff0000');
+    expect(config.namespaces.Auth?.enabled).toBe(false);
+  });
 });
 
 describe('reset', () => {
