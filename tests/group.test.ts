@@ -73,4 +73,20 @@ describe('callGroup', () => {
     callGroup('Auth', badge, '테스트', () => {}, { collapsed: true });
     expect(spy).toHaveBeenCalled();
   });
+
+  it('옵션이 없으면 전역 기본값(collapsed: true)으로 groupCollapsed 사용', () => {
+    const collapsedSpy = vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
+    const groupSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
+    vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+    callGroup('Auth', badge, '테스트', () => {});
+    expect(collapsedSpy).toHaveBeenCalledTimes(1);
+    expect(groupSpy).not.toHaveBeenCalled();
+  });
+
+  it('collapsed: false 옵션이면 console.group 사용', () => {
+    const groupSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
+    vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+    callGroup('Auth', badge, '테스트', () => {}, { collapsed: false });
+    expect(groupSpy).toHaveBeenCalledTimes(1);
+  });
 });
