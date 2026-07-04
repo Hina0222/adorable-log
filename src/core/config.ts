@@ -30,3 +30,8 @@ export function getConfig(): AlogConfig {
 export function reset(): void {
   _config = { ...DEFAULT_CONFIG, namespaces: {} };
 }
+
+export function isEnabled(namespace: string): boolean {
+  if (!_config.enabled) return false;
+  return _config.namespaces[namespace]?.enabled !== false;
+}

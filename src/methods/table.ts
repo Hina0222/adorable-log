@@ -1,4 +1,4 @@
-import { getConfig } from '../core/config';
+import { getConfig, isEnabled } from '../core/config';
 import { supportsStyles } from '../utils/detect';
 
 export function callTable(
@@ -8,13 +8,9 @@ export function callTable(
   data: unknown[],
   columns?: string[],
 ): void {
-  const config = getConfig();
-  if (!config.enabled) return;
+  if (!isEnabled(namespace)) return;
 
-  const nsConfig = config.namespaces[namespace];
-  if (nsConfig?.enabled === false) return;
-
-  const groupFn = config.collapsed ? console.groupCollapsed : console.group;
+  const groupFn = getConfig().collapsed ? console.groupCollapsed : console.group;
 
   if (supportsStyles()) {
     groupFn(`${badge.format} ${label}`, ...badge.styles);

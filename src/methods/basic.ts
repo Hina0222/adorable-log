@@ -1,4 +1,4 @@
-import { getConfig } from '../core/config';
+import { isEnabled } from '../core/config';
 import { METHOD_STYLES } from '../core/styles';
 import { supportsStyles } from '../utils/detect';
 
@@ -11,11 +11,7 @@ export function callMethod(
   message: unknown,
   args: unknown[],
 ): void {
-  const config = getConfig();
-  if (!config.enabled) return;
-
-  const nsConfig = config.namespaces[namespace];
-  if (nsConfig?.enabled === false) return;
+  if (!isEnabled(namespace)) return;
 
   const { icon } = METHOD_STYLES[method];
   let consoleFn = console.log;

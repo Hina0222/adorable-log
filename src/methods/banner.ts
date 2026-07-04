@@ -1,4 +1,4 @@
-import { getConfig } from '../core/config';
+import { isEnabled } from '../core/config';
 import { supportsStyles } from '../utils/detect';
 
 export function callBanner(
@@ -7,11 +7,7 @@ export function callBanner(
   bgColor: string,
   title: string,
 ): void {
-  const config = getConfig();
-  if (!config.enabled) return;
-
-  const nsConfig = config.namespaces[namespace];
-  if (nsConfig?.enabled === false) return;
+  if (!isEnabled(namespace)) return;
 
   if (supportsStyles()) {
     const titleStyle = [
