@@ -17,7 +17,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "dev": "tsup --watch",
-    "preview": "npx serve ."
+    "preview": "npx serve .",
+    "prepublishOnly": "pnpm typecheck && pnpm test && pnpm build"
   },
   "files": [
     "dist",
