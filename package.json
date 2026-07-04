@@ -7,10 +7,18 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
   },
+  "sideEffects": false,
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
@@ -35,6 +43,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/hina0222/adorable-log"
+  },
+  "homepage": "https://github.com/hina0222/adorable-log#readme",
+  "bugs": {
+    "url": "https://github.com/hina0222/adorable-log/issues"
   },
   "author": "Hina0222",
   "license": "MIT",
