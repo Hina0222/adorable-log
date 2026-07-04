@@ -11,6 +11,8 @@ const DEFAULT_CONFIG: AlogConfig = {
 };
 
 let _config: AlogConfig = { ...DEFAULT_CONFIG, namespaces: {} };
+// configure/reset마다 증가 — 인스턴스가 캐싱한 badge의 무효화 판단에 사용
+let _version = 0;
 
 export function configure(options: Partial<AlogConfig>): void {
   const namespaces = { ..._config.namespaces };
@@ -22,14 +24,20 @@ export function configure(options: Partial<AlogConfig>): void {
     collapsed: options.collapsed ?? _config.collapsed,
     namespaces,
   };
+  _version++;
 }
 
 export function getConfig(): AlogConfig {
   return _config;
 }
 
+export function getVersion(): number {
+  return _version;
+}
+
 export function reset(): void {
   _config = { ...DEFAULT_CONFIG, namespaces: {} };
+  _version++;
 }
 
 export function isEnabled(namespace: string): boolean {

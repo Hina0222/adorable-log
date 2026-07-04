@@ -143,6 +143,9 @@ configure({
 
 **Priority:** `create option` > `configure namespace` > `auto-generated hash`
 
+Namespace colors from `configure()` apply even to loggers created before the call — call order
+doesn't matter. A color passed directly to `create()` always stays fixed.
+
 The badge text color (white or black) is automatically determined.
 
 ---

@@ -39,6 +39,26 @@ describe('AlogInstance 색상 우선순위', () => {
   });
 });
 
+describe('configure가 create 이후에 호출되어도 색상 반영', () => {
+  it('create 후 configure로 지정한 네임스페이스 색상이 반영됨', () => {
+    const instance = new AlogInstance('Auth');
+    configure({ namespaces: { Auth: { color: '#123456' } } });
+    expect(loggedBadgeStyle(instance)).toContain('background: #123456');
+  });
+
+  it('create 옵션 색상은 이후 configure보다 계속 우선함', () => {
+    const instance = new AlogInstance('Auth', { color: '#ff0000' });
+    configure({ namespaces: { Auth: { color: '#00ff00' } } });
+    expect(loggedBadgeStyle(instance)).toContain('background: #ff0000');
+  });
+
+  it('색상과 무관한 configure 후에는 해시 색상이 유지됨', () => {
+    const instance = new AlogInstance('Auth');
+    configure({ collapsed: false });
+    expect(loggedBadgeStyle(instance)).toContain(`background: ${hashColor('Auth')}`);
+  });
+});
+
 describe('create', () => {
   it('AlogInstance를 반환하고 배지 포맷으로 로깅함', () => {
     const log = create('API');
