@@ -167,10 +167,15 @@ log.group('Payment Process', () => {
 
 `groupEnd` is always called even if an error is thrown inside the callback.
 
+The callback always runs even when logging is disabled — only the console grouping is skipped, so
+code inside a group never disappears in production.
+
+Groups and tables are rendered collapsed by default (`collapsed: true`).
+
 ```ts
-// collapsed option — render the group collapsed
+// collapsed option — render this group expanded
 log.group('Label', () => { ...
-}, {collapsed: true});
+}, {collapsed: false});
 ```
 
 ---
