@@ -23,6 +23,14 @@ describe('supportsStyles', () => {
     expect(supportsStyles()).toBe(true);
   });
 
+  it('window만 있고 navigator가 없으면 크래시 없이 false', async () => {
+    vi.resetModules();
+    vi.stubGlobal('window', {});
+    vi.stubGlobal('navigator', undefined);
+    const { supportsStyles } = await import('../src/utils/detect');
+    expect(supportsStyles()).toBe(false);
+  });
+
   it('지원 목록에 없는 UA면 false', async () => {
     vi.resetModules();
     vi.stubGlobal('window', {});
