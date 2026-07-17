@@ -216,6 +216,9 @@ log.banner('API Request Start');
 
 ## Global Configuration
 
+`configure()` is meant to be called **once** at app initialization. Subsequent calls are ignored with a
+console warning.
+
 ```ts
 import {configure} from 'adorable-log';
 

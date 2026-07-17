@@ -13,15 +13,23 @@ const DEFAULT_CONFIG: AlogConfig = {
 let _config: AlogConfig = { ...DEFAULT_CONFIG, namespaces: {} };
 // configure/reset마다 증가 — 인스턴스가 캐싱한 badge의 무효화 판단에 사용
 let _version = 0;
+// configure는 앱 초기화 시 1회 호출 계약 — 두 번째 호출부터 경고 후 무시
+let _configured = false;
 
 export function configure(options: Partial<AlogConfig>): void {
-  const namespaces = { ..._config.namespaces };
+  if (_configured) {
+    console.warn('[adorable-log] configure() should only be called once — this call is ignored.');
+    return;
+  }
+  _configured = true;
+
+  const namespaces: AlogConfig['namespaces'] = {};
   for (const [name, nsOptions] of Object.entries(options.namespaces ?? {})) {
-    namespaces[name] = { ...namespaces[name], ...nsOptions };
+    namespaces[name] = { ...nsOptions };
   }
   _config = {
-    enabled: options.enabled ?? _config.enabled,
-    collapsed: options.collapsed ?? _config.collapsed,
+    enabled: options.enabled ?? DEFAULT_CONFIG.enabled,
+    collapsed: options.collapsed ?? DEFAULT_CONFIG.collapsed,
     namespaces,
   };
   _version++;
@@ -37,6 +45,7 @@ export function getVersion(): number {
 
 export function reset(): void {
   _config = { ...DEFAULT_CONFIG, namespaces: {} };
+  _configured = false;
   _version++;
 }
 
