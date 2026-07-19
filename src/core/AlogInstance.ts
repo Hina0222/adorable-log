@@ -1,5 +1,5 @@
 import {getConfig, getVersion} from './config';
-import {hashColor} from '../utils/color';
+import {hashColor, normalizeColor} from '../utils/color';
 import {getTextColor} from '../utils/luminance';
 import {buildBadge} from '../utils/format';
 import {callMethod} from '../methods/basic';
@@ -24,7 +24,7 @@ export class AlogInstance {
 
   private resolveBadge(): void {
     const nsConfig = getConfig().namespaces[this.namespace];
-    const resolved = this.explicitColor ?? nsConfig?.color ?? hashColor(this.namespace);
+    const resolved = normalizeColor(this.explicitColor ?? nsConfig?.color ?? hashColor(this.namespace));
     this.bgColor = resolved;
     this.textColor = getTextColor(resolved);
     this.badge = buildBadge(this.namespace, this.bgColor, this.textColor);

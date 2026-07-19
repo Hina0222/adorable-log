@@ -148,6 +148,10 @@ doesn't matter. A color passed directly to `create()` always stays fixed.
 
 The badge text color (white or black) is automatically determined.
 
+> Colors must be hex — 3- or 6-digit, with or without the leading `#` (e.g. `#E74C3C`, `E74C3C`, `#f00`).
+> Other CSS formats (named colors, `rgb()`, `hsl()`) will render as the badge background, but the automatic
+> text color detection won't work and the badge may become unreadable.
+
 ---
 
 
