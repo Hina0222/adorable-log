@@ -10,6 +10,10 @@ function hslToHex(h: number, s: number, l: number): string {
   return `#${f(0)}${f(8)}${f(4)}`;
 }
 
+export function normalizeColor(color: string): string {
+  return /^([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(color) ? `#${color}` : color;
+}
+
 export function hashColor(namespace: string): string {
   let hash = 0;
   for (let i = 0; i < namespace.length; i++) {

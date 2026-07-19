@@ -59,6 +59,24 @@ describe('configure가 create 이후에 호출되어도 색상 반영', () => {
   });
 });
 
+describe("'#' 없는 hex 색상 보정", () => {
+  it("create 옵션에 '#' 없는 6자리 hex를 넘겨도 '#'이 붙어 적용됨", () => {
+    const instance = new AlogInstance('Auth', { color: 'E74C3C' });
+    expect(loggedBadgeStyle(instance)).toContain('background: #E74C3C');
+  });
+
+  it("create 옵션에 '#' 없는 3자리 hex를 넘겨도 '#'이 붙어 적용됨", () => {
+    const instance = new AlogInstance('Auth', { color: 'fff' });
+    expect(loggedBadgeStyle(instance)).toContain('background: #fff');
+  });
+
+  it("configure 네임스페이스의 '#' 없는 hex도 보정됨", () => {
+    configure({ namespaces: { Auth: { color: '2ecc71' } } });
+    const instance = new AlogInstance('Auth');
+    expect(loggedBadgeStyle(instance)).toContain('background: #2ecc71');
+  });
+});
+
 describe('create', () => {
   it('AlogInstance를 반환하고 배지 포맷으로 로깅함', () => {
     const log = create('API');
