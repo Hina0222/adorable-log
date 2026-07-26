@@ -77,6 +77,19 @@ describe("'#' 없는 hex 색상 보정", () => {
   });
 });
 
+describe('banner', () => {
+  // banner()는 currentBadge()가 this.bgColor를 갱신한 "후에" 읽는 순서 의존성이 있다 (lazy 재계산)
+  it('create 후 configure로 지정한 색상이 배너 테두리에 반영됨', () => {
+    const instance = new AlogInstance('Auth');
+    configure({ namespaces: { Auth: { color: '#123456' } } });
+    const spy = vi.spyOn(console, 'log').mockImplementation(() => {});
+    instance.banner('시작');
+    const args = spy.mock.calls[0];
+    const titleStyle = args[args.length - 1] as string;
+    expect(titleStyle).toContain('border: 1px solid #123456');
+  });
+});
+
 describe('create', () => {
   it('AlogInstance를 반환하고 배지 포맷으로 로깅함', () => {
     const log = create('API');
