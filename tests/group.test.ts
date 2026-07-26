@@ -11,7 +11,7 @@ const badge = { format: '%c[Auth]%c', styles: ['background: #E74C3C; color: #fff
 
 describe('callGroup', () => {
   it('콜백이 throw해도 groupEnd 호출됨', () => {
-    vi.spyOn(console, 'group').mockImplementation(() => {});
+    vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
     const groupEndSpy = vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
 
     expect(() => {
@@ -71,7 +71,7 @@ describe('callGroup', () => {
     const spy = vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
     vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
     callGroup('Auth', badge, '테스트', () => {}, { collapsed: true });
-    expect(spy).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalledWith('[Auth] 테스트');
   });
 
   it('옵션이 없으면 전역 기본값(collapsed: true)으로 groupCollapsed 사용', () => {
