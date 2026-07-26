@@ -68,8 +68,8 @@ export class AlogInstance {
     callGroup(this.namespace, this.currentBadge(), label, callback, options);
   }
 
-  table(label: string, data: unknown[], columns?: string[]): void {
-    callTable(this.namespace, this.currentBadge(), label, data, columns);
+  table(label: string, data: unknown[], columns?: string[], options?: { collapsed?: boolean }): void {
+    callTable(this.namespace, this.currentBadge(), label, data, columns, options);
   }
 
   banner(title: string): void {

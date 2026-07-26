@@ -203,6 +203,9 @@ log.table('Foods', foods);
 
 // Specific columns only
 log.table('Foods', foods, ['name', 'price']);
+
+// collapsed option — render this table expanded
+log.table('Foods', foods, undefined, {collapsed: false});
 ```
 
 ---
