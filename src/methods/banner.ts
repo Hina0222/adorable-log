@@ -1,9 +1,10 @@
 import { isEnabled } from '../core/config';
 import { supportsStyles } from '../utils/detect';
+import type { Badge } from '../utils/format';
 
 export function callBanner(
   namespace: string,
-  badge: { format: string; styles: string[] },
+  badge: Badge,
   bgColor: string,
   title: string,
 ): void {

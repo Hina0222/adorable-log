@@ -1,21 +1,24 @@
 import {getConfig, getVersion} from './config';
 import {hashColor, normalizeColor} from '../utils/color';
 import {getTextColor} from '../utils/luminance';
-import {buildBadge} from '../utils/format';
+import {buildBadge, type Badge} from '../utils/format';
 import {callMethod} from '../methods/basic';
 import {callGroup} from '../methods/group';
 import {callTable} from '../methods/table';
 import {callBanner} from '../methods/banner';
 
+export interface CreateOptions {
+  color?: string;
+}
+
 export class AlogInstance {
   private namespace: string;
   private explicitColor?: string;
   private bgColor!: string;
-  private textColor!: string;
-  private badge!: { format: string; styles: string[] };
+  private badge!: Badge;
   private configVersion: number;
 
-  constructor(namespace: string, options?: { color?: string }) {
+  constructor(namespace: string, options?: CreateOptions) {
     this.namespace = namespace;
     this.explicitColor = options?.color;
     this.configVersion = getVersion();
@@ -26,13 +29,13 @@ export class AlogInstance {
     const nsConfig = getConfig().namespaces[this.namespace];
     const resolved = normalizeColor(this.explicitColor ?? nsConfig?.color ?? hashColor(this.namespace));
     this.bgColor = resolved;
-    this.textColor = getTextColor(resolved);
-    this.badge = buildBadge(this.namespace, this.bgColor, this.textColor);
+    const textColor = getTextColor(resolved);
+    this.badge = buildBadge(this.namespace, this.bgColor, textColor);
   }
 
   // create 옵션 색상이 없으면 configure로 색이 늦게 지정돼도 반영되도록,
   // config가 바뀐 뒤 첫 호출에서만 badge를 재계산한다
-  private currentBadge(): { format: string; styles: string[] } {
+  private currentBadge(): Badge {
     if (this.explicitColor === undefined && getVersion() !== this.configVersion) {
       this.configVersion = getVersion();
       this.resolveBadge();

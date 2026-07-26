@@ -1,9 +1,10 @@
 import { getConfig, isEnabled } from '../core/config';
 import { supportsStyles } from '../utils/detect';
+import type { Badge } from '../utils/format';
 
 export function callTable(
   namespace: string,
-  badge: { format: string; styles: string[] },
+  badge: Badge,
   label: string,
   data: unknown[],
   columns?: string[],

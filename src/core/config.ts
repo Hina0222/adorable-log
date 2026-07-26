@@ -1,7 +1,12 @@
+export interface NamespaceConfig {
+  color?: string;
+  enabled?: boolean;
+}
+
 export interface AlogConfig {
   enabled: boolean;
   collapsed: boolean;
-  namespaces: Record<string, { color?: string; enabled?: boolean }>;
+  namespaces: Record<string, NamespaceConfig>;
 }
 
 const DEFAULT_CONFIG: AlogConfig = {
