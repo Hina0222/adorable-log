@@ -1,13 +1,14 @@
 import { isEnabled } from '../core/config';
 import { METHOD_STYLES } from '../core/styles';
 import { supportsStyles } from '../utils/detect';
+import type { Badge } from '../utils/format';
 
 type MethodName = keyof typeof METHOD_STYLES;
 
 export function callMethod(
   method: MethodName,
   namespace: string,
-  badge: { format: string; styles: string[] },
+  badge: Badge,
   message: unknown,
   args: unknown[],
 ): void {

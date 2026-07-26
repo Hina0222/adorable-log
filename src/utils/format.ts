@@ -1,8 +1,13 @@
+export interface Badge {
+  format: string;
+  styles: string[];
+}
+
 export function buildBadge(
   namespace: string,
   bgColor: string,
   textColor: string,
-): { format: string; styles: string[] } {
+): Badge {
   const badgeStyle = [
     `background: ${bgColor}`,
     `color: ${textColor}`,
