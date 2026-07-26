@@ -48,6 +48,25 @@ describe('callTable', () => {
     expect(groupSpy).toHaveBeenCalledWith('[Auth] 목록');
   });
 
+  it('collapsed: false 옵션이면 console.group 사용', () => {
+    const groupSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
+    vi.spyOn(console, 'table').mockImplementation(() => {});
+    vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+    callTable('Auth', badge, '목록', data, undefined, { collapsed: false });
+    expect(groupSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('collapsed: true 옵션이면 전역 설정(collapsed: false)보다 우선함', () => {
+    configure({ collapsed: false });
+    const collapsedSpy = vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
+    const groupSpy = vi.spyOn(console, 'group').mockImplementation(() => {});
+    vi.spyOn(console, 'table').mockImplementation(() => {});
+    vi.spyOn(console, 'groupEnd').mockImplementation(() => {});
+    callTable('Auth', badge, '목록', data, undefined, { collapsed: true });
+    expect(collapsedSpy).toHaveBeenCalledTimes(1);
+    expect(groupSpy).not.toHaveBeenCalled();
+  });
+
   it('console.table이 throw해도 groupEnd 호출됨', () => {
     vi.spyOn(console, 'groupCollapsed').mockImplementation(() => {});
     vi.spyOn(console, 'table').mockImplementation(() => {

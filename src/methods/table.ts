@@ -7,10 +7,12 @@ export function callTable(
   label: string,
   data: unknown[],
   columns?: string[],
+  options?: { collapsed?: boolean },
 ): void {
   if (!isEnabled(namespace)) return;
 
-  const groupFn = getConfig().collapsed ? console.groupCollapsed : console.group;
+  const collapsed = options?.collapsed ?? getConfig().collapsed;
+  const groupFn = collapsed ? console.groupCollapsed : console.group;
 
   if (supportsStyles()) {
     groupFn(`${badge.format} ${label}`, ...badge.styles);
