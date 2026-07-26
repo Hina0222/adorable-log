@@ -1,4 +1,4 @@
-import { getConfig, isEnabled } from '../core/config';
+import { getConfig, isEnabled, type CollapseOptions } from '../core/config';
 import { supportsStyles } from '../utils/detect';
 import type { Badge } from '../utils/format';
 
@@ -8,7 +8,7 @@ export function callTable(
   label: string,
   data: unknown[],
   columns?: string[],
-  options?: { collapsed?: boolean },
+  options?: CollapseOptions,
 ): void {
   if (!isEnabled(namespace)) return;
 

@@ -1,4 +1,4 @@
-import {getConfig, getVersion} from './config';
+import {getConfig, getVersion, type CollapseOptions} from './config';
 import {hashColor, normalizeColor} from '../utils/color';
 import {getTextColor} from '../utils/luminance';
 import {buildBadge, type Badge} from '../utils/format';
@@ -67,11 +67,11 @@ export class AlogInstance {
     callMethod('debug', this.namespace, this.currentBadge(), message, args);
   }
 
-  group(label: string, callback: () => void, options?: { collapsed?: boolean }): void {
+  group(label: string, callback: () => void, options?: CollapseOptions): void {
     callGroup(this.namespace, this.currentBadge(), label, callback, options);
   }
 
-  table(label: string, data: unknown[], columns?: string[], options?: { collapsed?: boolean }): void {
+  table(label: string, data: unknown[], columns?: string[], options?: CollapseOptions): void {
     callTable(this.namespace, this.currentBadge(), label, data, columns, options);
   }
 

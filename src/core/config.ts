@@ -3,6 +3,10 @@ export interface NamespaceConfig {
   enabled?: boolean;
 }
 
+export interface CollapseOptions {
+  collapsed?: boolean;
+}
+
 export interface AlogConfig {
   enabled: boolean;
   collapsed: boolean;

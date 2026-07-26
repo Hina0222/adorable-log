@@ -1,7 +1,7 @@
 import { AlogInstance, type CreateOptions } from './core/AlogInstance';
 import { configure } from './core/config';
 
-export type { AlogConfig, NamespaceConfig } from './core/config';
+export type { AlogConfig, NamespaceConfig, CollapseOptions } from './core/config';
 export type { CreateOptions } from './core/AlogInstance';
 export { AlogInstance };
 export { configure };

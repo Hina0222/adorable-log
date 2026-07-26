@@ -1,4 +1,4 @@
-import { getConfig, isEnabled } from '../core/config';
+import { getConfig, isEnabled, type CollapseOptions } from '../core/config';
 import { supportsStyles } from '../utils/detect';
 import type { Badge } from '../utils/format';
 
@@ -7,7 +7,7 @@ export function callGroup(
   badge: Badge,
   label: string,
   callback: () => void,
-  options?: { collapsed?: boolean },
+  options?: CollapseOptions,
 ): void {
   // 로깅이 꺼져 있어도 콜백 안의 코드는 실행되어야 한다 — 그룹 래핑만 생략
   if (!isEnabled(namespace)) {
