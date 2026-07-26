@@ -177,6 +177,10 @@ log.group('Payment Process', () => {
 The callback always runs even when logging is disabled — only the console grouping is skipped, so
 code inside a group never disappears in production.
 
+> The callback must be **synchronous**. If you pass an `async` function, the group closes at the first
+> `await` — logs after it appear outside the group, and exceptions become unhandled rejections instead
+> of propagating. This is a limitation of the console group API itself, which cannot track async work.
+
 Groups and tables are rendered collapsed by default (`collapsed: true`).
 
 ```ts
@@ -216,7 +220,7 @@ Visually marks the start of a log flow.
 
 ```ts
 log.banner('API Request Start');
-// [API] | API Request Start |
+// [API] *** API Request Start ***
 ```
 
 ---
