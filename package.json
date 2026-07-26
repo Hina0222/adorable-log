@@ -24,6 +24,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "check": "pnpm typecheck && pnpm test",
     "dev": "tsup --watch",
     "preview": "npx serve .",
     "prepublishOnly": "pnpm typecheck && pnpm test && pnpm build"
